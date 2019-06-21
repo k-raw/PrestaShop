@@ -234,7 +234,7 @@ class AdminImportControllerCore extends AdminController
                 );
 
                 $match_ref = Tools::getValue('match_ref');
-                $force_ids = Tools::getValue('forceIDs'); 
+                $force_ids = Tools::getValue('forceIDs');
 
                 if (!$force_ids && !$match_ref) {
                     $this->required_fields = array(
@@ -1752,10 +1752,12 @@ class AdminImportControllerCore extends AdminController
             if ($idProductByRef) {
                 $id_product = $idProductByRef;
             }
-            $this->errors[] = sprintf(
-                $this->trans('The product with the reference \'%s\' does not exist in the database, and therefore cannot be saved.', array(), 'Admin.Advparameters.Notification'),
-                $info['reference']
-            );
+            else {
+                $this->errors[] = sprintf(
+                    $this->trans('The product with the reference \'%s\' does not exist in the database, and therefore cannot be saved.', array(), 'Admin.Advparameters.Notification'),
+                    $info['reference']
+                );
+            }
         }
 
         $product = new Product($id_product);
