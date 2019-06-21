@@ -231,7 +231,7 @@ class AdminImportControllerCore extends AdminController
                 self::$validators['image'] = array(
                     'AdminImportController',
                     'split',
-                )
+                );
 
                 $match_ref = Tools::getValue('match_ref');
                 $force_ids = Tools::getValue('forceIDs');
