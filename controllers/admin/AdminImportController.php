@@ -237,7 +237,9 @@ class AdminImportControllerCore extends AdminController
                 $force_ids = Tools::getValue('forceIDs');
 
                 if (!$force_ids && !$match_ref) {
-                    $this->required_fields = $this->creation_required_fields;
+                    $this->required_fields = array(
+                        'name',
+                    );
                 }
 
                 $this->available_fields = array(
