@@ -232,6 +232,8 @@ class AdminImportControllerCore extends AdminController
                     'AdminImportController',
                     'split',
                 );
+
+                
                 $match_ref = Tools::getValue('match_ref');
                 $force_ids = Tools::getValue('forceIDs');
 
