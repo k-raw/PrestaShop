@@ -233,6 +233,13 @@ class AdminImportControllerCore extends AdminController
                     'split',
                 );
 
+                $match_ref = Tools::getValue('match_ref');
+                $force_ids = Tools::getValue('forceIDs');
+
+                if (!$force_ids && !$match_ref) {
+                    $this->required_fields = $this->creation_required_fields;
+                }
+
                 $this->available_fields = array(
                     'no' => array('label' => $this->trans('Ignore this column', array(), 'Admin.Advparameters.Feature')),
                     'id' => array('label' => $this->trans('ID', array(), 'Admin.Global')),
@@ -1743,6 +1750,10 @@ class AdminImportControllerCore extends AdminController
             if ($idProductByRef) {
                 $id_product = $idProductByRef;
             }
+            $this->errors[] = sprintf(
+                $this->trans('The product with the reference \'%s\' does not exist in the database, and therefore cannot be saved.', array(), 'Admin.Advparameters.Notification'),
+                $info['reference']
+            );
         }
 
         $product = new Product($id_product);
